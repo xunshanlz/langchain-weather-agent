@@ -20,6 +20,30 @@ def get_weather(city:str) -> dict:
     # todo: 温度用city哈希派生一个数，湿度同上，天气状况从一个通用池里hash挑
     return result[idx]
 
+def dress_advice(temperature:int, condition:str) -> str:
+    """
+    根据温度和天气条件给出穿衣建议。temperature参数是摄氏度，condition参数是天气条件，如‘晴’、‘多云’、‘下雨’、‘下雪’。返回值是一个字符串，如‘天气晴朗，温度较高，建议穿薄外套。’
+    :param temperature: 温度
+    :param condition: 天气条件
+    :return: 穿衣建议
+    """
+    temperature_correction = {
+        "晴": 0,
+        "多云": 0,
+        "下雨": -5,
+        "下雪": -5
+    }
+    body_temperature = temperature + temperature_correction.get(condition, 0)
+    if body_temperature > 30:
+        return "天气晴朗，温度较高，建议穿短袖。"
+    elif body_temperature > 20:
+        return "天气温和，建议穿长袖衬衫。"
+    elif body_temperature > 10:
+        return "天气凉爽，建议穿厚外套。"
+    else:
+        return "天气寒冷，建议穿羽绒服。"
+
+
 if __name__ == '__main__':
     print(get_weather("北京"))
     print(get_weather("北京"))
