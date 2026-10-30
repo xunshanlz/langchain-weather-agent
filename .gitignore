@@ -1,0 +1,29 @@
+# 密钥和环境
+.env
+.env.local
+*.pem
+*.key
+
+# Python编译产物
+__pycache__/
+*.py[cod]
+
+# 虚拟环境
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# 操作系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 测试与日志
+.pytest_cache/
+.coverage
+*.log
