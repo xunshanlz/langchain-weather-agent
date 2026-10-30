@@ -1,5 +1,5 @@
-from step2_mock_tool import get_weather
 from step2_mock_tool import dress_advice
+from real_weather import get_real_weather
 from langchain_core.tools import tool
 
 
@@ -9,7 +9,7 @@ def weather_tool(city:str) -> dict:
     :param city: 城市名称
     :return: 天气信息
     """
-    return get_weather(city)
+    return get_real_weather(city)
 
 @tool
 def dress_advice_tool(temperature:int, condition:str) -> str:
@@ -23,3 +23,4 @@ def dress_advice_tool(temperature:int, condition:str) -> str:
 if __name__ == '__main__':
     print(weather_tool.description)
     print(weather_tool.args)
+    print(weather_tool.invoke({'city': '北京'}))

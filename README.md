@@ -9,6 +9,7 @@
 - DashScope (阿里云百炼，OpenAI兼容协议)
 - 通义千问qwen-plus
 - python-dotenv
+- 和风天气API
 
 ## 运行方法：
 
@@ -48,6 +49,7 @@ Python_Agent_train/
 └── weather_agent/         # Agent 源码包
     ├── main.py            # 程序主入口
     ├── config.py          # 常量配置
+    ├── real_weather.py    # 真实天气查询工具
     ├── step1_hello_llm.py # Lv.1 冒烟测试：验证 Qwen 连通性
     ├── step2_mock_tool.py # Lv.2 数据层：确定性 mock 天气
     ├── step3_wrap_tool.py # Lv.3 框架层：用 @tool 让 LangChain 认识函数
@@ -68,9 +70,12 @@ Python_Agent_train/
 4. system_prompt约束能压制LLM幻觉，不干净的docstring会加剧甚至造成幻觉
 5. 找不到变量就查API真实签名
 6. 多轮对话记忆用 checkpointer + thread_id 实现，thread_id 是会话身份证，InMemorySaver 重启失忆，生产需换持久化方案
+7. 数据接口契约：真实API返回格式要对齐mock，可以省去很多工作量，也不容易出错，切换数据源时下游step不需要改动。
+8. 和风天气API返回的json中的'windScale'是风级，如果需要风速要用'wind_speed'
+9. @tool是适配器：装饰后函数改变StructuredTool对象，要用.invoke()调用
+10. 工具函数的异常要在边界内消化（return一句话），不能raise，否则agent工具崩溃会带着整段对话一起死
 
 ## 下一步
--  接真天气API
 - 迁移到LangGraph，加可视化流程
 
 
