@@ -71,7 +71,7 @@ Python_Agent_train/
 5. 找不到变量就查API真实签名
 6. 多轮对话记忆用 checkpointer + thread_id 实现，thread_id 是会话身份证，InMemorySaver 重启失忆，生产需换持久化方案
 7. 数据接口契约：真实API返回格式要对齐mock，可以省去很多工作量，也不容易出错，切换数据源时下游step不需要改动。
-8. 和风天气API返回的json中的'windScale'是风级，如果需要风速要用'wind_speed'
+8. 和风天气API返回的json中的'windScale'是风级，如果需要风速要用'windSpeed'
 9. @tool是适配器：装饰后函数改变StructuredTool对象，要用.invoke()调用
 10. 工具函数的异常要在边界内消化（return一句话），不能raise，否则agent工具崩溃会带着整段对话一起死
 
