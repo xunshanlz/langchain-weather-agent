@@ -67,10 +67,10 @@ Python_Agent_train/
 3. docstring很重要，@tool会把函数docstring作为工具描述注入系统提示词。LLM就是靠这句话决定要不要调用工具、如何填参数。docstring写的烂，Agent就不会用你的工具
 4. system_prompt约束能压制LLM幻觉，不干净的docstring会加剧甚至造成幻觉
 5. 找不到变量就查API真实签名
+6. 多轮对话记忆用 checkpointer + thread_id 实现，thread_id 是会话身份证，InMemorySaver 重启失忆，生产需换持久化方案
 
 ## 下一步
 -  接真天气API
-- 加入多轮对话memory
 - 迁移到LangGraph，加可视化流程
 
 
