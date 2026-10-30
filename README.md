@@ -65,11 +65,12 @@ Python_Agent_train/
 1. 没有意义的import应当删除
 2. 用zlib.crc32把城市名映射到候选列表的索引，实现同输入同输出。Python内置hash()有跨进程随机化陷阱，不可用于确定性场景。
 3. docstring很重要，@tool会把函数docstring作为工具描述注入系统提示词。LLM就是靠这句话决定要不要调用工具、如何填参数。docstring写的烂，Agent就不会用你的工具
+4. system_prompt约束能压制LLM幻觉，不干净的docstring会加剧甚至造成幻觉
+5. 找不到变量就查API真实签名
 
 ## 下一步
 -  接真天气API
 - 加入多轮对话memory
-- 加第二个工具（穿衣建议），观察LLM如何编排
 - 迁移到LangGraph，加可视化流程
 
 
